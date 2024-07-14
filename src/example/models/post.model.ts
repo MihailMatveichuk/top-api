@@ -1,6 +1,6 @@
-import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument, Schema as MSSchema } from 'mongoose';
-import { ExampleModel } from './example.model';
+import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument, Schema as MSSchema } from "mongoose";
+import { ExampleModel } from "./example.model";
 
 export type PostDocument = HydratedDocument<PostModel>;
 

@@ -1,8 +1,8 @@
-import { Module } from '@nestjs/common';
-import { ExampleService } from './example.service';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ExampleModel, ExampleSchema } from './models/example.model';
-import { PostModel, PostSchema } from './models/post.model';
+import { Module } from "@nestjs/common";
+import { ExampleService } from "./example.service";
+import { MongooseModule } from "@nestjs/mongoose";
+import { ExampleModel, ExampleSchema } from "./models/example.model";
+import { PostModel, PostSchema } from "./models/post.model";
 
 @Module({
   providers: [ExampleService],
