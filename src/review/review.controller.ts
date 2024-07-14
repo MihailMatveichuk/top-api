@@ -1,18 +1,27 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Inject, Param, Post } from "@nestjs/common";
-import { CreateReviewDto } from "./dto/create-review.dto";
-import { ReviewService } from "./review.service";
-import { REVIEW_NOT_FOUND } from "./review.consatnts";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+} from '@nestjs/common';
+import { CreateReviewDto } from './dto/create-review.dto';
+import { ReviewService } from './review.service';
+import { REVIEW_NOT_FOUND } from './review.constants';
 
-@Controller("review")
+@Controller('review')
 export class ReviewController {
   constructor(private readonly reviewService: ReviewService) {}
-  @Post("create")
+  @Post('create')
   async create(@Body() dto: CreateReviewDto) {
-    await this.reviewService.create(dto);
+    return await this.reviewService.create(dto);
   }
 
-  @Delete(":id")
-  async delete(@Param("id") id: string) {
+  @Delete(':id')
+  async delete(@Param('id') id: string) {
     const deletedDoc = await this.reviewService.delete(id);
     if (!deletedDoc) {
       throw new HttpException(REVIEW_NOT_FOUND, HttpStatus.NOT_FOUND);
@@ -20,13 +29,13 @@ export class ReviewController {
     return deletedDoc;
   }
 
-  @Get("byProduct/:productId")
-  async findProductById(@Param("productId") productId: string) {
-    await this.reviewService.findProductById(productId);
+  @Get('byProduct/:productId')
+  async findProductById(@Param('productId') productId: string) {
+    return await this.reviewService.findProductById(productId);
   }
 
-  @Delete("byProduct/:productId")
-  async deleteReviewById(@Param("productId") productId: string) {
+  @Delete('byProduct/:productId')
+  async deleteReviewById(@Param('productId') productId: string) {
     const deletedDoc = await this.reviewService.deleteReviewById(productId);
     if (!deletedDoc) {
       throw new HttpException(REVIEW_NOT_FOUND, HttpStatus.NOT_FOUND);
