@@ -59,10 +59,7 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .post('/review/create')
       .send({ ...testDto, rating: '' })
-      .expect(400)
-      .then(({ body }: request.Response) => {
-        console.log(body);
-      });
+      .expect(400);
   });
 
   it('/review/byProduct/:productId (GET BY ID)) - success', async () => {
