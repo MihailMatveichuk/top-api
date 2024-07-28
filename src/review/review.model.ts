@@ -20,7 +20,7 @@ export class ReviewModel {
   @Prop(String)
   createdId: string;
 
-  @Prop()
+  @Prop({ type: Types.ObjectId })
   productId: Types.ObjectId;
 }
 

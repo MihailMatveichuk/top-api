@@ -41,8 +41,6 @@ export class ReviewController {
     @Param('productId') productId: string,
     @UserEmail() email: string
   ) {
-    console.log(email);
-
     return await this.reviewService.findProductById(productId);
   }
 

@@ -8,7 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:32769/test'),
+    MongooseModule.forRoot('mongodb://localhost:32773/test'),
     ConfigModule.forRoot(),
     AuthModule,
     TopPageModule,
