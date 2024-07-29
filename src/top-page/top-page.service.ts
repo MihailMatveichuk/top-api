@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { TopPageDocument, TopPageModel } from './top-page.model';
 import { Model, Types } from 'mongoose';
 import { FindTopPageDto } from './dto/find-top-page.dto';
-import { ReviewModel } from 'review/review.model';
 import { CreateTopPageDto } from './dto/create-top-page.dto';
 
 @Injectable()
@@ -46,10 +45,24 @@ export class TopPageService {
 
   async findByCategory(dto: FindTopPageDto) {
     return this.topPageModel
+      .aggregate()
+      .match({ firstCategory: dto.firstCategory })
+      .group({
+        _id: { secondCategory: '$secondCategory' },
+        pages: {
+          $push: { alias: '$alias', title: '$title' },
+        },
+      })
+      .exec();
+  }
+
+  async findByText(text: string) {
+    return this.topPageModel
       .find(
-        { firstCategory: dto.firstCategory },
-        { alias: 1, secondCategory: 1, title: 1 }
+        { $text: { $search: text, $caseSensitive: false } },
+        { score: { $meta: 'textScore' } }
       )
+      .sort({ score: { $meta: 'textScore' } })
       .exec();
   }
 }

@@ -33,10 +33,10 @@ export class TopPageModel {
   @Prop(String)
   secondCategory: string;
 
-  @Prop(String)
+  @Prop({ text: () => true, unique: true, string: true })
   alias: string;
 
-  @Prop(String)
+  @Prop({ text: () => true })
   title: string;
 
   @Prop(String)
