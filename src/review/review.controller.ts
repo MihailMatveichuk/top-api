@@ -39,8 +39,7 @@ export class ReviewController {
 
   @Get('byProduct/:productId')
   async findProductById(
-    @Param('productId', IdValidationPipe) productId: string,
-    @UserEmail() email: string
+    @Param('productId', IdValidationPipe) productId: string
   ) {
     return await this.reviewService.findProductById(productId);
   }
