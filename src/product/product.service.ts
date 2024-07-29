@@ -58,7 +58,7 @@ export class ProductService {
         },
         {
           $lookup: {
-            from: ReviewModel.name,
+            from: 'reviewmodels',
             localField: '_id',
             foreignField: 'productId',
             as: 'reviews',
@@ -68,6 +68,13 @@ export class ProductService {
           $addFields: {
             reviewCount: { $size: '$reviews' },
             reviewAvg: { $avg: '$reviews.rating' },
+            reviews: {
+              $function: {
+                body: 'function(reviews) { return reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) }',
+                args: ['$reviews'],
+                lang: 'js',
+              },
+            },
           },
         },
       ])
