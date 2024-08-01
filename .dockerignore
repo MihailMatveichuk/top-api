@@ -1,0 +1,20 @@
+# idea
+.idea
+
+# git
+.git
+
+# Byte-compiled / optimized / DLL files
+**/__pycache__
+**/*.py[cod]
+**/*$py.class
+
+# celery
+celerybeat.pid
+
+**/*.log
+
+**/*.env
+.aws
+.venv/
+info.md

@@ -1,15 +1,13 @@
-FROM node:14-alpine
+FROM node:18
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-ADD package.json package.json
+COPY package*.json ./
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
-ADD . .
+COPY  . .
 
 RUN npm run build
 
-RUN npm prune --production
-
-CMD [ "node", "./dist/main.js" ] 
+CMD [ "npm", "run", "start:prod" ]

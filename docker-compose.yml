@@ -1,12 +1,37 @@
-version: '3'
+version: '3.6'
 
 services:
-  top-api:
-    image: top-api:latest
+  main:
     container_name: top-api
-    restart: always
+    build:
+      context: .
+    volumes:
+      - .:/usr/src/app
     ports:
       - 3000:3000
-    volumes:
-      -.env:/usr/src/app/.env
-      
+      - 9229:9229
+    command: npm run start:prod
+    env_file:
+      - .env
+    networks:
+      - webnet
+    depends_on:
+      - mongo_db
+
+  mongo_db:
+    container_name: mongo_db
+    hostname: localhost
+    image: mongo:latest
+    networks:
+      - webnet
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: '${MONGO_LOGIN}'
+      MONGO_INITDB_ROOT_PASSWORD: '${MONGO_PASSWORD}'
+      MONGO_INITDB_DATABASE: '${MONGO_AUTHDATABASE}'
+    ports:
+      - '32769:${MONGO_PORT}'
+networks:
+  webnet:
+    driver: bridge
+
+    
