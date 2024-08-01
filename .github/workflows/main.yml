@@ -12,6 +12,6 @@ jobs:
         with:
           registry: docker.pkg.github.com
           name: docker.pkg.github.com/MihailMatveichuk/top-api/top-api
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ github.actor }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "development"
