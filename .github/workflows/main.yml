@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
 
       - name: Publish to registry
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v3
         with:
           registry: docker.pkg.github.com
           name: docker.pkg.github.com/MihailMatveichuk/top-api/top-api
