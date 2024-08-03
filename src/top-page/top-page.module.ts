@@ -12,5 +12,6 @@ import { TopPageModel, TopPageSchema } from './top-page.model';
       { name: TopPageModel.name, schema: TopPageSchema },
     ]),
   ],
+  exports: [TopPageService],
 })
 export class TopPageModule {}

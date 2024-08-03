@@ -24,6 +24,10 @@ export class TopPageService {
     return await this.topPageModel.findOne({ alias }).exec();
   }
 
+  async findAll(): Promise<TopPageModel[] | []> {
+    return await this.topPageModel.find({}).exec();
+  }
+
   async deletePageById(
     productId: string
   ): Promise<TopPageModel | HttpStatus | null> {

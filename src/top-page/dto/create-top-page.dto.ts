@@ -8,7 +8,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 
-enum TopLevelCategory {
+export enum TopLevelCategory {
   Courses,
   Services,
   Books,

@@ -46,6 +46,12 @@ export class TopPageController {
   }
 
   @UseGuards(JWTAuthGuard)
+  @Get('findAllPages')
+  async findAll() {
+    return await this.topPageService.findAll();
+  }
+
+  @UseGuards(JWTAuthGuard)
   @Get('byAlias/:alias')
   async getByAlias(@Param('alias') alias: string) {
     const page = await this.topPageService.findPageByAlias(alias);
